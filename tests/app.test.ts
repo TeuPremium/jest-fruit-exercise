@@ -18,21 +18,19 @@ describe("testando a api", () => {
   ];
   it("should return status 201 when fruit is inserted", async () => {
     const insertOne = await api.post("/fruits").send(fruitsArray[0]);
-    console.log(insertOne.body);
 
     expect(insertOne.status).toEqual(201);
   });
 
-  it("should return status 200", async () => {
+  it("should return status 200 when getting all fruits", async () => {
     await api.post("/fruits").send(fruitsArray[1]);
     const getAll = await api.get("/fruits");
     expect(getAll.status).toEqual(200);
     expect(getAll.body).toEqual(result);
   });
 
-  it("should return status 200", async () => {
+  it("should return status 200 when reaching for especific fruit", async () => {
     const getAll = await api.get("/fruits/2");
-    console.log(getAll.body);
     expect(getAll.status).toEqual(200);
     expect(getAll.body).toEqual(result[1]);
   });
